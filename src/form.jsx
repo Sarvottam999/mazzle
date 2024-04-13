@@ -24,7 +24,7 @@ export const Form = () => {
         e.preventDefault();
         setError(null)
 
-        console.log(inputValues)
+        // console.log(inputValues)
         try {
           var result  = rg_crtn(inputValues.TgtGR, inputValues.MpGR, inputValues.TgtHt, inputValues.MpHt, inputValues.Temp, inputValues.OT
 
@@ -106,6 +106,8 @@ result && (
           <p>Range: {result.trg_range}</p>
           <p>Charge: {result.final_charge}</p>
           <p>Disha: {result.final_disha}</p>
+          <p>uchai: {result.uchai_agl_of_projtn}</p>
+
 
         </div>
       )} 
@@ -132,27 +134,35 @@ function rg_crtn  (TgtGR, MpGR, TgtHt, MpHt, Temp, OT )   {
 
     var current_chg = "";
     var current_mv = "";
+    var final_charge_string = "";
     var final_charge = "";
+
     var final_disha = "";
     var ht_crtn;
 
+    console.log(`finding TgtGR, MpGR completed ....  : ${TgtGR  } -- ${MpGR}`);
+
+
     var differences = find_cordnt(TgtGR, MpGR); 
     printError(differences, "differences!")
+    console.log(`finding differences completed ....  : ${differences}`);
+
 
     var trg_range = find_tr_range(differences[0], differences[1]);
     printError(trg_range, "trg_range!")
-  //   console.log(trg_range);
+    console.log(`finding trg_range completed ....  : ${trg_range}`);
   
 
     var find_charge = findChargeInRange(data, trg_range);
-  //   console.log(`finding charge completed ....  : ${find_charge}`);
-
+    console.log(`finding find_charge completed ....  : ${find_charge}`);
     printError(find_charge, "charge!")
 
 
 
     const numbers = find_charge.match(/\d+/g); // Match all digits in the string
     console.log(numbers);
+    console.log(`finding numbers completed ....${numbers}`);
+
     if (numbers.length == 0) {
       throw new Error("no found numbers!");
 
@@ -161,7 +171,6 @@ function rg_crtn  (TgtGR, MpGR, TgtHt, MpHt, Temp, OT )   {
     }
 
 
-  //   console.log("finding numbers completed ....");
 
     current_chg = numbers[0].toString();
     current_mv = numbers[1].toString();
@@ -170,8 +179,11 @@ function rg_crtn  (TgtGR, MpGR, TgtHt, MpHt, Temp, OT )   {
     printError(final_disha, "final_disha!")
 
     var diff_in_h = TgtHt - MpHt;
+    console.log("diff_in_h");
 
-    if (isPositive(diff_in_h)) {
+    console.log(diff_in_h);
+
+    if ( diff_in_h > 0) {
       // console.log("tg_up_from_mp");
       ht_crtn = getValueForHT_crtn(
         find_charge,
@@ -180,10 +192,13 @@ function rg_crtn  (TgtGR, MpGR, TgtHt, MpHt, Temp, OT )   {
         trg_range,
         diff_in_h
       );
+      console.log("ht_crtn");
+
+      console.log(ht_crtn);
 
       printError(ht_crtn, "ht_crtn!");
       trg_range = trg_range + ht_crtn;
-    } else {
+    } else if (diff_in_h > 0) {
       // console.log("tg_down_from_mp")
       ht_crtn = getValueForHT_crtn(
         find_charge,
@@ -194,11 +209,16 @@ function rg_crtn  (TgtGR, MpGR, TgtHt, MpHt, Temp, OT )   {
       );
       printError(ht_crtn, "ht_crtn!");
 
-      trg_range = trg_range + ht_crtn;
+      trg_range = trg_range - ht_crtn;
+    }
+    else{
+
     }
 
     //  ALT correction
     var ALT_crtn_blocks = Math.floor(MpHt / 300);
+
+    console.log(Math.floor(1134 / 300))
 
     var gwt_ValueForALT_crtn = getValueForALT_crtn(
       trg_range,
@@ -235,15 +255,22 @@ function rg_crtn  (TgtGR, MpGR, TgtHt, MpHt, Temp, OT )   {
     trg_range = trg_range - conbine_effect;
     //
 
-    final_charge = findChargeInRange(data, trg_range);
-    const numbs = final_charge.match(/\d+/g); // Match all digits in the string
-    // console.log(numbers)
+    final_charge_string = findChargeInRange(data, trg_range);
+    const numbs = final_charge_string.match(/\d+/g); // Match all digits in the string
+    console.log("-----------------------")
+    
+    console.log(final_charge_string)
+    // console.log(data)
+
     final_charge = numbs[0].toString();
+
+    var uchai_agl_of_projtn = get_Angle_of_projection(trg_range, data, final_charge_string);
 
     return {
       trg_range,
       final_charge, 
       final_disha,
+      uchai_agl_of_projtn
 
 
     }
@@ -276,17 +303,41 @@ function rg_crtn  (TgtGR, MpGR, TgtHt, MpHt, Temp, OT )   {
 function find_tr_range(a, b) {
   // find target range
   var c = Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2));
+  // console.log(Math.pow(a, 2));
+  // console.log(Math.pow(b, 2));
+  // console.log(Math.pow(a, 2) + Math.pow(b, 2));
+  // console.log(Math.sqrt(Math.pow(a, 2) + Math.pow(b, 2)));
+
+
+
+  console.log(`finding root ....  : ${c}`);
+
   var answer = Math.round(c) * 100;
+  console.log(`finding root answer ....  : ${answer}`);
+
   return answer;
 }
 
 function find_cordnt(str1, str2) {
+
+
   var left1 = parseInt(str1.substring(0, 3));
   var left2 = parseInt(str2.substring(0, 3));
   var right1 = parseInt(str1.substring(str1.length - 3));
   var right2 = parseInt(str2.substring(str2.length - 3));
+  console.log(`finding differences started ....  : `);
+  console.log(`finding differences left1 ....  : ${left1}`);
+  console.log(`finding differences left2 ....  : ${left2}`);
+  console.log(`finding differences right1 ....  : ${right1}`);
+  console.log(`finding differences right2 ....  : ${right2}`);
+
+
   var leftDiff = left1 - left2;
   var rightDiff = right1 - right2;
+  console.log(`finding differences right2 ....  : ${leftDiff}`);
+  console.log(`finding differences rightDiff ....  : ${rightDiff}`);
+  // console.log(`finding differences completed ....  : ${differences}`);
+
 
   return [leftDiff, rightDiff];
 }
@@ -303,7 +354,7 @@ function findChargeInRange(data, range) {
       const chargeData = data[key];
 
       const Crtn_to_rg_alt_temp = chargeData["Crtn_to_rg_alt_temp"];
-      console.log(key);
+      // console.log(key);
       for (let i = 0; i < Crtn_to_rg_alt_temp.length; i++) {
         if (range <= Crtn_to_rg_alt_temp[i][0] ) {
           final_key = key;
@@ -315,9 +366,9 @@ function findChargeInRange(data, range) {
   return final_key;
 }
 
-function isPositive(number) {
-  return number > 0;
-}
+// function isPositive(number) {
+//   return number > 0;
+// }
 
 function getValueForHT_crtn(key, data, position_key, trg_range, diff_in_h) {
   //CORRECTION TO RANGE FOR DIFFERENCE IN HEIGHT OF TARGET FROM MORTAR//
@@ -432,6 +483,37 @@ function getValueForTem_crtn(trg_range, data, charge) {
   }
 
   return value;
+}
+
+function get_Angle_of_projection(trg_range, data, charge) {
+
+  let value = null;
+
+  try {
+    // for (const k in data) {
+
+    const chargeData = data[charge];
+    console.log("--------------chargeData")
+    console.log(data)
+    console.log(charge)
+
+    console.log(chargeData)
+
+
+    chargeData.Crtn_to_rg_alt_temp.forEach((element) => {
+      if (element[0] <= trg_range) {
+        value = element[3];
+        //    console.log(value)
+      }
+    });
+
+    //   };
+  } catch (error) {
+    console.log(error);
+  }
+
+  return value;
+  
 }
 
 function roundToNearestTen(num) {
