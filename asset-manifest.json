@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/mazzle/static/css/main.7e46e9cb.css",
-    "main.js": "/mazzle/static/js/main.02b35452.js",
+    "main.js": "/mazzle/static/js/main.fad124cf.js",
     "static/js/453.419a5d54.chunk.js": "/mazzle/static/js/453.419a5d54.chunk.js",
     "index.html": "/mazzle/index.html",
     "main.7e46e9cb.css.map": "/mazzle/static/css/main.7e46e9cb.css.map",
-    "main.02b35452.js.map": "/mazzle/static/js/main.02b35452.js.map",
+    "main.fad124cf.js.map": "/mazzle/static/js/main.fad124cf.js.map",
     "453.419a5d54.chunk.js.map": "/mazzle/static/js/453.419a5d54.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.7e46e9cb.css",
-    "static/js/main.02b35452.js"
+    "static/js/main.fad124cf.js"
   ]
 }
