@@ -117,6 +117,8 @@ export const Form = () => {
 result ? (
   <div>
   <h2>Final Disha: {result.final_disha}</h2>
+  <h2>initail range: {result.initial_range}</h2>
+
   <h3>List of Calculations:</h3>
   <ul>
    

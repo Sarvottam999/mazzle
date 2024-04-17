@@ -3,8 +3,8 @@ import React from 'react';
 function DisplayResults({ results }) {
   return (
     <div>
-      <h2>Final Disha: {results.final_disha}</h2>
-      <h3>List of Calculations:</h3>
+      {/* <h2>Final Disha: {results.final_disha}</h2>
+      <h3>List of Calculations:</h3> */}
       <ul>
         {results.list_of_calculation.map((calculation, index) => (
           <li key={index}>

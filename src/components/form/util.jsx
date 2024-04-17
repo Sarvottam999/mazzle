@@ -3,6 +3,8 @@ export function rg_crtn  (TgtGR, MpGR, TgtHt, MpHt, Temp, OT , data_in_use)   {
 
   // console.log(`  TgtGR --- MpGR : ${TgtGR  } -- ${MpGR}`);
 
+  let final_intial_range ;
+
   let x_y = find_cordnt(TgtGR, MpGR);
   // console.log(`finding x_y  completed ....  : ${x_y}`);
 
@@ -15,6 +17,7 @@ export function rg_crtn  (TgtGR, MpGR, TgtHt, MpHt, Temp, OT , data_in_use)   {
 
   let intial_range = find_tr_range(x_y[0], x_y[1]);
   printError(intial_range, "initail range!")
+  final_intial_range = intial_range;
   // console.log(`finding trg_range completed ....  : ${intial_range}`);
 
   let find_list_charge = findChargeInRange(data_in_use, intial_range);
@@ -38,6 +41,8 @@ export function rg_crtn  (TgtGR, MpGR, TgtHt, MpHt, Temp, OT , data_in_use)   {
       }
 
       return {
+  initial_range : final_intial_range,
+
         final_disha,
         list_of_calculation
 
