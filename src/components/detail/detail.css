@@ -1,0 +1,21 @@
+
+.list-item{
+    /* background-color: aqua; */
+    
+    display: flex;
+    width: 100%;
+
+}
+.list-text{
+    /* background-color: aqua; */
+    /* height: 100px; */
+    border-radius: 5px;
+    margin-top: 12px;
+    /* width: 50%; */
+    
+}
+li {
+    list-style: none;
+    /* background-color: rgb(132, 150, 150); */
+
+}

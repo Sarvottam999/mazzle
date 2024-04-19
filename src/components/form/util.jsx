@@ -510,3 +510,10 @@ return {
   
 }
 
+
+
+export function return_string_to_num_charge(charge) {
+  const numbers = charge.match(/\d+/g); // Match all digits in the string
+
+  return numbers[0];
+}

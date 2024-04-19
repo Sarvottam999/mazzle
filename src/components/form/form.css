@@ -1,0 +1,99 @@
+label {
+  display: flex;
+  justify-content: center;
+  align-items: center; /* Optional: align items vertically in the center */
+  width: 100%; /* Set width of the div */
+  height: 100%;
+}
+
+form {
+  margin: 10%;
+  border: 1px solid #ccc; /* Just for visualization */
+  border-radius: 1rem;
+}
+
+
+
+.form-label {
+  /* display: flex; */
+  /* margin: 4px 2px; */
+  /* background-color: #00bcd4; */
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+}
+
+.form-control {
+  /* width: 200px;  */
+  padding: 8px;
+  /* margin-top: 15px; */
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+/* Style input on focus */
+.form-control:focus {
+  outline: none;
+  border-color: #00bcd4; /* Example focus color */
+  box-shadow: 0 0 5px rgba(0, 188, 212, 0.5); /* Example focus effect */
+}
+
+/* .btn {
+    background-color: #04AA6D;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+  } */
+
+.custom-btn {
+  width: 150px;
+  border-radius: 9px;
+}
+
+
+
+
+
+.col-75-form {
+
+  width: 75%;
+  margin: 16px 0;
+  /* background-color: rgb(255, 255, 255); */
+  display: flex;
+  flex-direction: column;
+}
+
+.result-detail{
+  padding: 4rem;
+}
+
+.sp1{
+  width: 100px;
+}
+
+
+@media (max-width: 868px) {
+
+  .col-75-form {
+
+    width: 100%;
+    /* margin: 16px 0; */
+    /* background-color: rgb(255, 100, 100); */
+    display: flex;
+    /* flex-direction: column; */
+  }
+
+  .result-detail{
+    padding: 2rem;
+  }
+  
+
+
+}
