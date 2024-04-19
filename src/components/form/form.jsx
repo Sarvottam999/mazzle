@@ -182,16 +182,16 @@ export const Form = () => {
 
 
           <div className="row">
-            <h2 className="result-text-1 col-25">Disha: </h2>{" "}
-            <div className="col-25">{result.final_disha}</div>
+            <h2 className="result-text-1 col-25 col-25-result">Disha: </h2>{" "}
+            <div className="col-25 col-25-result">{result.final_disha.toFixed(3)}</div>
           </div>
           <div className="row">
-            <h2 className="result-text-1  col-25">Initial range:</h2>{" "}
-            <div className="col-25">{result.initial_range}</div>
+            <h2 className="result-text-1  col-25 col-25-result">Initial range:</h2>{" "}
+            <div className="col-25 col-25-result">{result.initial_range}</div>
           </div>
 
           <div className="row">
-            <div className="col-25 col-25-form">After correction:</div>
+            <div className="col-25 col-25-form  ">After correction:</div>
             <div className="col-75-form">
               <div className="text-container-after-corret">
                 <span className="result-text-2   ">

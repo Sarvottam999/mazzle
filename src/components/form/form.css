@@ -20,7 +20,7 @@ form {
   /* background-color: #00bcd4; */
   font-size: 16px;
   font-weight: bold;
-  color: #333;
+  color: #8d3c3c;
 }
 
 .form-control {
@@ -91,7 +91,7 @@ form {
   }
 
   .result-detail{
-    padding: 2rem;
+    padding: 1rem;
   }
   
 

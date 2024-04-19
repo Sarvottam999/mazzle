@@ -195,11 +195,18 @@ html, body {
 .col-25 {
   width: 25%;
 
+  /* background-color: rgb(179, 77, 77); */
+
+}
+.col-25-result {
+  width: 50%;
+
+  /* background-color: rgb(179, 77, 77); */
 
 }
 
 .col-25-form{
-  width: 100%;
+  /* width: 100%; */
 
 
 }
@@ -207,6 +214,19 @@ html, body {
 
 .col-75 {
   width: 75%;
+
+}
+
+.result-text-2 {
+  /* height: ; */
+
+  /* width: 150px; */
+  /* margin: 0 10px; */
+  /* border-radius: 5px; */
+  /* padding: 5px 10px; */
+  /* font-weight: 400; */
+  font-size:17px;
+  background-color: rgb(215, 215, 215);
 
 }
 }
